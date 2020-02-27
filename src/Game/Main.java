@@ -1,6 +1,6 @@
 package Game;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Main extends JFrame {
 
