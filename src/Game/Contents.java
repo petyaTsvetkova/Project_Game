@@ -1,13 +1,15 @@
 package Game;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Contents extends JPanel implements ActionListener, KeyListener {
     private int xBasket = 200, yBasket = 290; // Позиция на кошницата
@@ -23,9 +25,13 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
     private int xOval4 = r.nextInt((300 - 250) + 1) + 300;
     private Timer t; // За да определя през какъв период от време ми се обновява екрана
     private int points = 0;
+    private int id = 0;
+    Map<String, Integer> dictionary = new HashMap<String, Integer>();
     private int timerUnits = 0;
     private int seconds = 60;
     JLabel lbl1 = new JLabel();
+    JTextField field = new JTextField(10);
+    JButton b = new JButton("Save name");
     private boolean mustRun = true;
 
 
@@ -36,7 +42,10 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-
+        super.add(field);
+        super.add(b);
+        field.setVisible(false);
+        b.setVisible(false);
     }
 
     @Override // Показвам, че презаписвам този метод при съществуващ друг метод в друг клас
@@ -98,13 +107,38 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
 
             if (timerUnits > 0 && timerUnits % 65 == 0) {
                 seconds--;
-                if (seconds == 0) {
+                if (seconds == 50) {
                     mustRun = false;
+                    id++;
                 }
             }
             timerUnits++;
             if (mustRun == false) {
-                lbl1.setText("Points: " + points + " Press Enter to start again");
+               // lbl1.setText("Points: " + points + " Press Enter to start again");
+                lbl1.setText("Enter your name ");
+                field.setVisible(true);
+                b.setVisible(true);
+
+
+                b.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent arg0) {
+                        field.setVisible(false);
+                        b.setVisible(false);
+                        String name =  field.getText();
+                        dictionary.put(id + ". " + name, points);
+                        StringBuilder sortedResults = new StringBuilder();
+                        sortedResults.append("<html>");
+                        for (Map.Entry<String, Integer> e : dictionary.entrySet()) {
+                            sortedResults.append(e.getKey() + ": " + e.getValue() + "<br/>");
+                        }
+                        sortedResults.append("Press Enter to start again</html>");
+                        lbl1.setText(String.valueOf(sortedResults));
+                        sortedResults.setLength(0);
+                       // lbl1.setText(name + "'s points: " + points + " Press Enter to start again");
+                    }
+                });
             } else {
                 lbl1.setText("Points: " + points + " Seconds: " + seconds);
             }
@@ -120,7 +154,6 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
                 xBasket = 10;
             }
         }
-
     }
 
     @Override // С този метод следя какво прави потребителят
