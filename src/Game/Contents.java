@@ -1,28 +1,26 @@
 package Game;
 
-import javax.swing.*;
 import javax.swing.Timer;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Contents extends JPanel implements ActionListener, KeyListener {
     private int xBasket = 200, yBasket = 290; // Позиция на кошницата
-    private int xMove = 0;
-    private int yOval = 8;
-    private int yOval2 = 8;
-    private int yOval3 = 8;
-    private int yOval4 = 8;
+    private int xMove = 0; // увеличава или намалява позицията на кошницата
+    private int yOval = 0;
+    private int yOval2 = 0;
+    private int yOval3 = 0;
+    private int yOval4 = 0;
     Random r = new Random();
-    private int xOval = r.nextInt((300 - 250) + 1) + 300;
-    private int xOval2 = r.nextInt((300 - 250) + 1) + 300;
-    private int xOval3 = r.nextInt((300 - 250) + 1) + 300;
-    private int xOval4 = r.nextInt((300 - 250) + 1) + 300;
+    private int xOval = defineXOval(r);
+    private int xOval2 = defineXOval(r);
+    private int xOval3 = defineXOval(r);
+    private int xOval4 = defineXOval(r);
     private Timer t; // За да определя през какъв период от време ми се обновява екрана
     private int points = 0;
     private int id = 0;
@@ -34,10 +32,14 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
     JButton b = new JButton("Save name");
     private boolean mustRun = true;
 
+    public static int defineXOval(Random r)
+    {
+        return r.nextInt((550 - 100) + 1) + 100;
+    }
 
     public Contents() {
         super.setDoubleBuffered(true); // За по-гладко местене на фигурите
-        t = new Timer(1, this); // Delay са милисекунди. С keyword this указваме, че става дума за този клас
+        t = new Timer(10, this); // Delay са милисекунди. С keyword this указваме, че става дума за този клас
         t.start();
         addKeyListener(this);
         setFocusable(true);
@@ -57,7 +59,6 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
         g2d.drawOval(xOval2, yOval2, 8, 8);
         g2d.drawOval(xOval3, yOval3, 8, 8);
         g2d.drawOval(xOval4, yOval4, 8, 8);
-
     }
 
     public void move() {
@@ -79,42 +80,41 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
                 if (xOval >= xBasket - 4 && xOval < xBasket + 20) {
                     points++;
                 }
-                yOval = 8;
-                xOval = r.nextInt(((550 - 100) + 1) + 100);
-
+                yOval = 0;
+                xOval = defineXOval(r);
             }
             if (yOval2 == yBasket - 8) {
                 if (xOval2 >= xBasket - 4 && xOval2 < xBasket + 20) {
                     points++;
                 }
-                yOval2 = 8;
-                xOval2 = r.nextInt(((550 - 100) + 1) + 100);
+                yOval2 = 0;
+                xOval2 = defineXOval(r);
             }
             if (yOval3 == yBasket - 8) {
                 if (xOval3 >= xBasket - 4 && xOval3 < xBasket + 20) {
                     points++;
                 }
-                yOval3 = 8;
-                xOval3 = r.nextInt(((550 - 100) + 1) + 100);
+                yOval3 = 0;
+                xOval3 = defineXOval(r);
             }
             if (yOval4 == yBasket - 8) {
                 if (xOval4 >= xBasket - 4 && xOval4 < xBasket + 20) {
                     points++;
                 }
-                yOval4 = 8;
-                xOval4 = r.nextInt(((550 - 100) + 1) + 100);
+                yOval4 = 0;
+                xOval4 = defineXOval(r);
             }
 
             if (timerUnits > 0 && timerUnits % 65 == 0) {
                 seconds--;
-                if (seconds == 50) {
+                if (seconds == 0) {
                     mustRun = false;
                     id++;
                 }
             }
             timerUnits++;
             if (mustRun == false) {
-               // lbl1.setText("Points: " + points + " Press Enter to start again");
+                // lbl1.setText("Points: " + points + " Press Enter to start again");
                 lbl1.setText("Enter your name ");
                 field.setVisible(true);
                 b.setVisible(true);
@@ -126,17 +126,24 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
                     public void actionPerformed(ActionEvent arg0) {
                         field.setVisible(false);
                         b.setVisible(false);
-                        String name =  field.getText();
+                        String name = field.getText();
                         dictionary.put(id + ". " + name, points);
                         StringBuilder sortedResults = new StringBuilder();
                         sortedResults.append("<html>");
-                        for (Map.Entry<String, Integer> e : dictionary.entrySet()) {
-                            sortedResults.append(e.getKey() + ": " + e.getValue() + "<br/>");
+                        Object[] a = dictionary.entrySet().toArray();
+                        Arrays.sort(a, new Comparator() {
+                            public int compare(Object o1, Object o2) {
+                                return ((Map.Entry<String, Integer>) o2).getValue()
+                                        .compareTo(((Map.Entry<String, Integer>) o1).getValue());
+                            }
+                        });
+                        for (Object e : a) {
+                            sortedResults.append(((Map.Entry<String, Integer>) e).getKey() + ": " + ((Map.Entry<String, Integer>) e).getValue() + "<br/>");
                         }
                         sortedResults.append("Press Enter to start again</html>");
                         lbl1.setText(String.valueOf(sortedResults));
                         sortedResults.setLength(0);
-                       // lbl1.setText(name + "'s points: " + points + " Press Enter to start again");
+                        // lbl1.setText(name + "'s points: " + points + " Press Enter to start again");
                     }
                 });
             } else {
@@ -155,6 +162,7 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
             }
         }
     }
+
 
     @Override // С този метод следя какво прави потребителят
     public void actionPerformed(ActionEvent e) {
@@ -180,6 +188,11 @@ public class Contents extends JPanel implements ActionListener, KeyListener {
 
         if (c == KeyEvent.VK_ENTER && mustRun == false) {
             mustRun = true;
+            timerUnits = 0;
+            yOval = 0;
+            yOval2 = 0;
+            yOval3 = 0;
+            yOval4 = 0;
             seconds = 60;
             points = 0;
         }

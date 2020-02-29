@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3eb1fba8-55d0-44f9-96ee-e8885fcb6d29" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PROJECT_GAME/Game/Contents$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PROJECT_GAME/Game/Contents$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PROJECT_GAME/Game/Contents.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PROJECT_GAME/Game/Contents.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/Contents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/Contents.java" afterDir="false" />
     </list>
@@ -10,6 +11,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -92,26 +96,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1582960553068" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1582962156064">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1582968166340">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582962156064" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1582962156064">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582968166340" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1582968166340">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582962156064" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1582962156064">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582968166340" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1582968166340">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582962156064" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1582962156064">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582968166340" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1582968166340">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582962156064" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1582960517160">
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582968166340" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1582963343418">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582960517160" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1582963343418" />
     <state x="413" y="133" key="extract.method.dialog" timestamp="1582836860598">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
